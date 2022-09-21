@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ToDoRepository extends JpaRepository<ToDo, Long> {
 
-    ToDo findById(long id);
+    ToDo findByToDoId(long id);
 
     List<ToDo> findByUserId(String userId);
 }

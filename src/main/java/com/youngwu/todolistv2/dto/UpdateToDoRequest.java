@@ -6,10 +6,14 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 @Data
-public class CreateToDoRequest {
+public class UpdateToDoRequest {
 
     @NotNull
-    @ApiModelProperty(value = "用戶名稱", required = true)
+    @ApiModelProperty(value = "待辦事項id", required = true)
+    private long toDoId;
+
+    @NotNull
+    @ApiModelProperty(value = "用戶id", required = true)
     private String userId;
 
     @NotNull

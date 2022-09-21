@@ -1,5 +1,6 @@
 package com.youngwu.todolistv2.model;
 
+import com.youngwu.todolistv2.constant.FinishFlag;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,14 +17,21 @@ public class ToDo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
+    @Column(name = "to_do_id")
+    private long toDoId;
 
     @Column(name = "user_id")
     private String userId;
 
     @Column(name = "description")
     private String description;
+
+    @Column(name = "category")
+    private String category;
+
+    @Column(name = "isFinish")
+    @Enumerated(EnumType.STRING)
+    private FinishFlag isFinish;
 
     @Column(name = "create_date")
     private Date createDate;
