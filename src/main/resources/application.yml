@@ -13,8 +13,8 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
         format_sql: true
   jackson:
-    time-zone: GMT+8 #????
-    date-format: yyyy-MM-dd HH:mm:ss #????
+    time-zone: GMT+8 #時區設置
+    date-format: yyyy-MM-dd #時間格式
 
 
   mvc:
