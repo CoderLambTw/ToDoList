@@ -6,13 +6,13 @@ Simple to-do-list app created with SpringBoot, React and MySQL
 * [Technologies Used](#technologies-used)
 * [Features](#features)
 * [To do](#to-do)
-* [Project Status](#project-stutas)
+* [Project Status](#project-status)
 
 ## General info
 This project is a simple to-do-list app for practice.
 
 ## Technologies Used
-* Project is created with:
+ Project is created with:
 
 * Spring Boot version: 2.7.4
 * React version: 18.1.0
@@ -23,7 +23,8 @@ This project is a simple to-do-list app for practice.
 
 ## To do
 * Use oauth2 to authenticate users with Facebook, Google, Github. 
-# Use JWT for user authentication.
+* Use JWT for user authentication.
+* Export/ upload file.
 
 ## Project Status
 * Project is: In progress.
