@@ -12,7 +12,7 @@ Simple to-do-list app created with SpringBoot, React.js and MySQL
 This project is a simple to-do-list app for practice.
 
 ## Technologies Used
-Project is created with:
+* Project is created with:
 
 * Spring Boot version: 2.7.3
 * React version: 18.1.0
