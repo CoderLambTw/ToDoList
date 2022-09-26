@@ -1,5 +1,5 @@
 # ToDoList
-Simple to-do-list app created with SpringBoot, React.js and MySQL
+Simple to-do-list app created with SpringBoot, React and MySQL
 
 ## Table of Contents
 * [General info](#general-info)
@@ -23,6 +23,7 @@ This project is a simple to-do-list app for practice.
 
 ## To do
 * Use oauth2 to authenticate users with Facebook, Google, Github. 
+# Use JWT for user authentication.
 
 ## Project Status
 * Project is: In progress.
