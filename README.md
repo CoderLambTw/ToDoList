@@ -14,7 +14,7 @@ This project is a simple to-do-list app for practice.
 ## Technologies Used
 * Project is created with:
 
-* Spring Boot version: 2.7.3
+* Spring Boot version: 2.7.4
 * React version: 18.1.0
 * MySQL version: 8.0.29
 
