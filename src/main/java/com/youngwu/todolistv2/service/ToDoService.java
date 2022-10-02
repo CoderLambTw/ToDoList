@@ -4,7 +4,6 @@ import com.youngwu.todolistv2.dto.*;
 import com.youngwu.todolistv2.model.ToDo;
 import com.youngwu.todolistv2.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -20,7 +19,7 @@ public class ToDoService {
 
     private final ToDoRepository toDoRepository;
 
-    public CreateToDoResponse createToDo(@NotNull CreateToDoRequest request) {
+    public CreateToDoResponse createToDo(CreateToDoRequest request) {
         ToDo toDo = new ToDo();
         toDo.setUserId(request.getUserId()); // 用戶id
         toDo.setDescription(request.getDescription()); // 內文
