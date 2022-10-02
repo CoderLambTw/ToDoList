@@ -1,12 +1,13 @@
 package com.youngwu.todolistv2.service;
 
-import com.youngwu.todolistv2.dto.CreateToDoRequest;
-import com.youngwu.todolistv2.dto.CreateToDoResponse;
-import com.youngwu.todolistv2.dto.UpdateToDoRequest;
-import com.youngwu.todolistv2.dto.UpdateToDoResponse;
+import com.youngwu.todolistv2.dto.*;
 import com.youngwu.todolistv2.model.ToDo;
 import com.youngwu.todolistv2.repository.ToDoRepository;
 import lombok.RequiredArgsConstructor;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ public class ToDoService {
 
     private final ToDoRepository toDoRepository;
 
-    public CreateToDoResponse createToDo(CreateToDoRequest request) {
+    public CreateToDoResponse createToDo(@NotNull CreateToDoRequest request) {
         ToDo toDo = new ToDo();
         toDo.setUserId(request.getUserId()); // 用戶id
         toDo.setDescription(request.getDescription()); // 內文
@@ -35,17 +36,34 @@ public class ToDoService {
         return response;
     }
 
-    public ToDo getToDoById(long id) {
-        return toDoRepository.findByToDoId(id);
-    }
+    public List<ToDo> getToDoList(ToDoQueryParams toDoQueryParams) {
+        //查詢條件
+        String category = toDoQueryParams.getCategory();
+        String description = toDoQueryParams.getDescription();
 
-    public List<ToDo> getToDoListByUserId(String userId) {
-        return toDoRepository.findByUserId(userId);
-    }
+        //排序條件
+        String orderBy = toDoQueryParams.getOrderBy().name();
+        String sort = toDoQueryParams.getSort().name();
 
+        //分頁功能
+        int page = toDoQueryParams.getPage();
+        int pageSize = toDoQueryParams.getPageSize();
 
-    public List<ToDo> getToDoList() {
-        return toDoRepository.findAll();
+        Sort sortBy = Sort.by(orderBy).descending();
+        if ("asc".equals(sort)) {
+            sortBy = Sort.by(orderBy).descending();
+        }
+
+        Pageable pageable = PageRequest.of(page, pageSize, sortBy);
+        if (category != null && description != null) {
+            return toDoRepository.findByCategoryAndDescriptionContaining(category, description, pageable);
+        } else if (category != null) {
+            return toDoRepository.findByCategory(category);
+        } else if (description != null) {
+            return toDoRepository.findByDescriptionContaining(description);
+        } else {
+            return toDoRepository.findAll();
+        }
     }
 
     public UpdateToDoResponse updateToDo(UpdateToDoRequest request) {
@@ -67,6 +85,13 @@ public class ToDoService {
         } else {
             response.setStatus("Update failed");
         }
+        return response;
+    }
+
+    public DeleteToDoResponse deleteToDo(long toDoId) {
+        DeleteToDoResponse response = new DeleteToDoResponse();
+        toDoRepository.deleteById(toDoId);
+        response.setDeleteProductId(toDoId);
         return response;
     }
 }
